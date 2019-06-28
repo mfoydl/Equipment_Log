@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Background="LightGray"
         Title="RSP Equipment Log" Height="450" Width="800">
+
+    <Window.DataContext>
+        <local:LogViewModel />
+    </Window.DataContext>
     
     <Window.Resources>
         <Style x:Key="logLabel" TargetType="TextBlock">
@@ -46,8 +50,6 @@
             <Setter Property="BorderThickness" Value="0,0,0,0"></Setter>
             <Setter Property="TextAlignment" Value="Center"></Setter>
         </Style>
-
-
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -106,15 +108,15 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="S#: " Grid.Column="0" Style = "{StaticResource logLabel}"></TextBlock>
-                <TextBox Grid.Column="1" Style = "{StaticResource headerTextBox}" Name="sNum1"></TextBox>
+                <TextBox Grid.Column="1" Style = "{StaticResource headerTextBox}" Text="{Binding SNum1, Mode=TwoWay}"></TextBox>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Signature: " Grid.Column="0" Style = "{StaticResource logLabel}"></TextBlock>
-                <TextBox Grid.Column="1" Style = "{StaticResource headerTextBox}"></TextBox>
+                <TextBlock Text="Signature: " Grid.Column="0" Style = "{StaticResource logLabel}" ></TextBlock>
+                <TextBox Grid.Column="1" Style = "{StaticResource headerTextBox}" Text="{Binding Signature1, Mode=TwoWay}"/>
             </Grid>
             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Shift: " Style = "{StaticResource logLabel}"></TextBlock>
@@ -147,11 +149,11 @@
             <!-- Beginning Of Shift-->
             <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Text="Beginning of Shift" Style = "{StaticResource logLabel}"></TextBlock>
 
-            <TextBox Grid.Row="3" Grid.Column="1" Style = "{StaticResource myTextBox}"></TextBox>
+            <TextBox Grid.Row="3" Grid.Column="1" Style = "{StaticResource myTextBox}" Text="{Binding IPads, Mode=TwoWay}"></TextBox>
 
-            <TextBox Grid.Row="4" Grid.Column="1" Style = "{StaticResource myTextBox}"></TextBox>
+            <TextBox Grid.Row="4" Grid.Column="1" Style = "{StaticResource myTextBox}" Text="{Binding Radios, Mode=TwoWay}"></TextBox>
 
-            <TextBox Grid.Row="5" Grid.Column="1" Style = "{StaticResource myTextBox}"></TextBox>
+            <TextBox Grid.Row="5" Grid.Column="1" Style = "{StaticResource myTextBox}" Text="{Binding Flashlights, Mode=TwoWay}"></TextBox>
 
             <Grid Grid.Row="6" Grid.Column="1">
                 <Grid.ColumnDefinitions>
@@ -164,7 +166,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}" Text="{Binding Hex, Mode=TwoWay}"></TextBox>
                     <TextBlock Text="Hex" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
                 </Grid>
                 <Grid Grid.Column="1" Margin="0,0,5,0">
@@ -172,7 +174,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}" Text="{Binding Pliers, Mode=TwoWay}"></TextBox>
                     <TextBlock Text="Pliers" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
                 </Grid>
                 <Grid Grid.Column="2" Margin="0,0,5,0">
@@ -180,7 +182,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}" Text="{Binding Batons, Mode=TwoWay}"></TextBox>
                     <TextBlock Text="Batons" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
                 </Grid>
                 <Border BorderThickness="1,0,1,0" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Column="1"/>
@@ -207,7 +209,7 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="UGM" Style="{StaticResource keys}" Grid.Column="1"></TextBlock>
-                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}" Text="{Binding UGM, Mode=TwoWay}"></TextBox>
                 </Grid>
                 <Grid Grid.Row="0" Grid.Column="1">
                     <Grid.ColumnDefinitions>
@@ -215,7 +217,7 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="SCC" Style="{StaticResource keys}" Grid.Column="1"></TextBlock>
-                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}" Text="{Binding SCC, Mode=TwoWay}"></TextBox>
                 </Grid>
                 <Grid Grid.Row="0" Grid.Column="2">
                     <Grid.ColumnDefinitions>
@@ -223,7 +225,7 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="WCL" Style="{StaticResource keys}" Grid.Column="1"></TextBlock>
-                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}" Text="{Binding WCL, Mode=TwoWay}"></TextBox>
                 </Grid>
                 <Grid Grid.Row="0" Grid.Column="4">
                     <Grid.ColumnDefinitions>
@@ -231,7 +233,7 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="SUBB" Style="{StaticResource keys}" Grid.Column="1"></TextBlock>
-                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}" Text="{Binding SUBB, Mode=TwoWay}"></TextBox>
                 </Grid>
                 <Grid Grid.Row="0" Grid.Column="5">
                     <Grid.ColumnDefinitions>
@@ -239,7 +241,7 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="SUBT" Style="{StaticResource keys}" Grid.Column="1"></TextBlock>
-                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}" Text="{Binding SUBT, Mode=TwoWay}"></TextBox>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
@@ -247,7 +249,7 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Y.Key" Style="{StaticResource keys}" Grid.Column="1"></TextBlock>
-                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}" Text="{Binding YKEY, Mode=TwoWay}"></TextBox>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
@@ -255,7 +257,7 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="S.Key" Style="{StaticResource keys}" Grid.Column="1"></TextBlock>
-                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}" Text="{Binding SKEY, Mode=TwoWay}"></TextBox>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="4">
                     <Grid.ColumnDefinitions>
@@ -263,7 +265,7 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="LOT" Style="{StaticResource keys}" Grid.Column="1"></TextBlock>
-                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}" Text="{Binding LOT, Mode=TwoWay}"></TextBox>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="5">
                     <Grid.ColumnDefinitions>
@@ -271,7 +273,7 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="JEEP" Style="{StaticResource keys}" Grid.Column="1"></TextBlock>
-                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style="{StaticResource keysBox}" Text="{Binding JEEP, Mode=TwoWay}"></TextBox>
                 </Grid>
                 <Border Grid.Column="0" Grid.Row="0" BorderBrush="Black" BorderThickness="0,0,1,1"></Border>
                 <Border Grid.Column="1" Grid.Row="0" BorderBrush="Black" BorderThickness="0,0,1,1"></Border>
@@ -286,11 +288,11 @@
 
                 <StackPanel Grid.Row="0" Grid.Column="3" Background="Gray"></StackPanel>
             </Grid>
-            
 
-            <TextBox Grid.Row="8" Grid.Column="1" Style = "{StaticResource myTextBox}"></TextBox>
 
-            <TextBox Grid.Row="9" Grid.Column="1" Style = "{StaticResource myTextBox}"></TextBox>
+            <TextBox Grid.Row="8" Grid.Column="1" Style = "{StaticResource myTextBox}" Text="{Binding Cards, Mode=TwoWay}"></TextBox>
+
+            <TextBox Grid.Row="9" Grid.Column="1" Style = "{StaticResource myTextBox}" Text="{Binding Slickers, Mode=TwoWay}"></TextBox>
 
             <!-- Jackets/Raincoats -->
             <Grid Grid.Row="10" Grid.Column="1">
@@ -304,7 +306,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}" Text="{Binding YJackets, Mode=TwoWay}"></TextBox>
                     <TextBlock Text="Y. Jackets" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
                 </Grid>
                 <Grid Grid.Column="1" Margin="0,0,5,0">
@@ -312,7 +314,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}" Text="{Binding OJAckets, Mode=TwoWay}"></TextBox>
                     <TextBlock Text="O. Jackets" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
                 </Grid>
                 <Grid Grid.Column="2" Margin="0,0,5,0">
@@ -320,13 +322,13 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}" Text="{Binding Raincoats, Mode=TwoWay}"></TextBox>
                     <TextBlock Text="Raincoats" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
                 </Grid>
                 <Border BorderThickness="1,0,1,0" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Column="1"/>
             </Grid>
 
-            <TextBox Grid.Row="11" Grid.Column="1" Style = "{StaticResource myTextBox}"></TextBox>
+            <TextBox Grid.Row="11" Grid.Column="1" Style = "{StaticResource myTextBox}" Text="{Binding Vests, Mode=TwoWay}"></TextBox>
 
             <!-- Bags -->
             <Grid Grid.Row="12" Grid.Column="1">
@@ -339,7 +341,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}" Text="{Binding DuffelBags, Mode=TwoWay}"></TextBox>
                     <TextBlock Text="Duffel Bags" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
                 </Grid>
                 <Grid Grid.Column="1" Margin="0,0,5,0">
@@ -347,13 +349,13 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}" Text="{Binding BookBags, Mode=TwoWay}"></TextBox>
                     <TextBlock Text="Book Bags" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
                 </Grid>
                 <Border BorderThickness="0,0,1,0" BorderBrush="Black" Grid.ColumnSpan="1" Grid.Column="0"/>
             </Grid>
 
-            <TextBox Grid.Row="13" Grid.Column="1" Style = "{StaticResource myTextBox}" TextAlignment="Left"></TextBox>
+            <TextBox Grid.Row="13" Grid.Column="1" Style = "{StaticResource myTextBox}" TextAlignment="Left" Text="{Binding Other, Mode=TwoWay}"></TextBox>
 
 
 
@@ -369,7 +371,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="S#: " Grid.Column="0" Style = "{StaticResource logLabel}" Margin="5,0,0,0"></TextBlock>
-                <TextBox Grid.Column="1" Style = "{StaticResource headerTextBox}"></TextBox>
+                <TextBox Grid.Column="1" Style = "{StaticResource headerTextBox}" Text="{Binding SNum1, Mode=TwoWay}"></TextBox>
             </Grid>
             <Grid Grid.Row="14" Grid.Column="2">
                 <Grid.ColumnDefinitions>
@@ -377,7 +379,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Signature: " Grid.Column="0" Style = "{StaticResource logLabel}"></TextBlock>
-                <TextBox Grid.Column="1" Style = "{StaticResource headerTextBox}"></TextBox>
+                <TextBox Grid.Column="1" Style = "{StaticResource headerTextBox}" Text="{Binding Signature2, Mode=TwoWay}"></TextBox>
             </Grid>
 
             <!-- Borders -->

@@ -6,43 +6,36 @@ using System.Threading.Tasks;
 
 namespace Equipment_Log {
     class CurrentLog {
-        private int IPads { get; set; }
-        private int Radios { get; set; }
-        private string Flashlights { get; set; }
-        private int Hex { get; set; }
-        private int Pliers { get; set; }
-        private int Batons { get; set; }
-        private int UGM { get; set; }
-        private int SCC { get; set; }
-        private int WCL { get; set; }
-        private int SUBB { get; set; }
-        private int SUBT { get; set; }
-        private int YKEY { get; set; }
-        private int SKEY { get; set; }
-        private int LOT { get; set; }
-        private int JEEP { get; set; }
-        private string Cards { get; set; }
-        private string Slickers { get; set; }
-        private int YJackets { get; set; }
-        private int OJAckets { get; set; }
-        private int Raincoats { get; set; }
-        private string Vests { get; set; }
-        private int BookBags { get; set; }
-        private int DuffelBags { get; set; }
-        private string Other { get; set; }
-        private DateTime Date { get; set; }
-        private string Shift { get; set; }
-        private string SNum1 { get; set; }
-        private string SNum2 { get; set; }
-        private string Signature1 { get; set; }
-        private string Signature2 { get; set; }
-
-        public void Load() {
-
-        }
-        public void Submit() {
-
-        }
+        public int IPads { get; set; } = -1;
+        public int Radios { get; set; } = -1;
+        public string Flashlights { get; set; } = "-";
+        public int Hex { get; set; } = -1;
+        public int Pliers { get; set; } = -1;
+        public int Batons { get; set; } = -1;
+        public int UGM { get; set; } = -1;
+        public int SCC { get; set; } = -1;
+        public int WCL { get; set; } = -1;
+        public int SUBB { get; set; } = -1;
+        public int SUBT { get; set; } = -1;
+        public int YKEY { get; set; } = -1;
+        public int SKEY { get; set; } = -1;
+        public int LOT { get; set; } = -1;
+        public int JEEP { get; set; } = -1;
+        public string Cards { get; set; } = "-";
+        public string Slickers { get; set; } = "-";
+        public int YJackets { get; set; } = -1;
+        public int OJAckets { get; set; } = -1;
+        public int Raincoats { get; set; } = -1;
+        public string Vests { get; set; } = "-";
+        public int BookBags { get; set; } = -1;
+        public int DuffelBags { get; set; } = -1;
+        public string Other { get; set; } = "-";
+        public DateTime Date { get; set; }
+        public string Shift { get; set; } = "-";
+        public string SNum1 { get; set; } = "-";
+        public string SNum2 { get; set; } = "-";
+        public string Signature1 { get; set; } = "-";
+        public string Signature2 { get; set; } = "-";
     }
 }
 

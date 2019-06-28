@@ -18,10 +18,8 @@ namespace Equipment_Log {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-        CurrentLog log;
         public MainWindow() {
             InitializeComponent();
-            log = new CurrentLog();
         }
 
         public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject {
@@ -66,7 +64,6 @@ namespace Equipment_Log {
 
         private void Submit(object sender, RoutedEventArgs e) {
             DisableComponents();
-            log.Submit();
         }
     }
 }
