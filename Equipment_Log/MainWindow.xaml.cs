@@ -18,8 +18,10 @@ namespace Equipment_Log {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+        CurrentLog log;
         public MainWindow() {
             InitializeComponent();
+            log = new CurrentLog();
         }
 
         public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject {
@@ -41,7 +43,7 @@ namespace Equipment_Log {
         /// Disables all TextBoxes in the current log
         /// Called when user submits the log so changes cannot be made afterwards
         /// </summary>
-        private void DisableComponents(object sender, RoutedEventArgs e) {
+        private void DisableComponents() {
             Console.WriteLine("Disable Event Fired");
             var lstControl = FindVisualChildren<TextBox>(this);
 
@@ -51,7 +53,7 @@ namespace Equipment_Log {
             }
         }
 
-        private void EnableComponents(object sender, RoutedEventArgs e) {
+        private void EnableComponents() {
             Console.WriteLine("Enable Event Fired");
 
             var lstControl = FindVisualChildren<TextBox>(this);
@@ -62,8 +64,9 @@ namespace Equipment_Log {
             }
         }
 
-        private void TestEvent(object sender, RoutedEventArgs e) {
-      
+        private void Submit(object sender, RoutedEventArgs e) {
+            DisableComponents();
+            log.Submit();
         }
     }
 }
