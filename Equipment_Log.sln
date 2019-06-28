@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equipment_Log", "Equipment_Log\Equipment_Log.csproj", "{97ECDACD-4186-4252-AADE-76CB7EDCEB29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97ECDACD-4186-4252-AADE-76CB7EDCEB29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97ECDACD-4186-4252-AADE-76CB7EDCEB29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97ECDACD-4186-4252-AADE-76CB7EDCEB29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97ECDACD-4186-4252-AADE-76CB7EDCEB29}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED1F445F-AD59-4C11-BBF3-79A150B12B58}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,347 @@
+﻿<Window x:Class="Equipment_Log.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Equipment_Log"
+        mc:Ignorable="d"
+        Background="LightGray"
+        Title="RSP Equipment Log" Height="450" Width="800">
+    
+    <Window.Resources>
+        <Style x:Key="logLabel" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="10,10,10,10"></Setter>
+        </Style>
+        <Style x:Key="myTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="10,10,10,10"></Setter>
+            <Setter Property="BorderThickness" Value="0,0,0,0"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+            <Setter Property="Background" Value="LightGray"></Setter>
+        </Style>
+        <Style x:Key="headerTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="15,5,15,5"></Setter>
+        </Style>
+        <Style x:Key="internalLabel" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+        </Style>
+        <Style x:Key="navButton" TargetType="Button">
+            <Setter Property="Margin" Value="20,20,20,20"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+        </Style>
+        <Style x:Key="keys" TargetType="TextBlock">
+            
+        </Style>
+
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Height="75">
+            <Button Content="Previous" Style="{StaticResource navButton}"></Button>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Equipment Log" HorizontalAlignment="Center" FontSize="20" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+                <DatePicker Height="26" Grid.Row="1" VerticalAlignment="Center"/>
+            </Grid>
+            <Button Content="Next" Style="{StaticResource navButton}"></Button>
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="50,20,50,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!-- Header Information for each log -->
+            <DatePicker Grid.Row="0" Grid.Column="0" Margin="20,5,20,5" FontSize="20"></DatePicker>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="S#: " Grid.Column="0" Style = "{StaticResource logLabel}"></TextBlock>
+                <TextBox Grid.Column="1" Style = "{StaticResource headerTextBox}"></TextBox>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Signature: " Grid.Column="0" Style = "{StaticResource logLabel}"></TextBlock>
+                <TextBox Grid.Column="1" Style = "{StaticResource headerTextBox}"></TextBox>
+            </Grid>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Shift: " Style = "{StaticResource logLabel}"></TextBlock>
+                <ComboBox Margin="20,5,20,5" FontSize="15" VerticalAlignment="Center">
+                    <ComboBoxItem IsSelected="True">Shift...</ComboBoxItem>
+                    <ComboBoxItem>4am - 8am</ComboBoxItem>
+                    <ComboBoxItem>8am - 12pm</ComboBoxItem>
+                    <ComboBoxItem>12pm - 4pm</ComboBoxItem>
+                    <ComboBoxItem>4pm - 8pm</ComboBoxItem>
+                    <ComboBoxItem>8pm - 4am</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <!-- Equipment Column/ Row Labels-->
+            <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Text="Equipment" Style = "{StaticResource logLabel}"></TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="iPads" Style = "{StaticResource logLabel}"></TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Radios" Style = "{StaticResource logLabel}"></TextBlock>
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Flashlights" Style = "{StaticResource logLabel}"></TextBlock>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Hex/Pliers/Batons" Style = "{StaticResource logLabel}"></TextBlock>
+            <TextBlock Grid.Row="7" Grid.Column="0" Text="Keys" Style = "{StaticResource logLabel}"></TextBlock>
+            <TextBlock Grid.Row="8" Grid.Column="0" Text="Access Cards" Style = "{StaticResource logLabel}"></TextBlock>
+            <TextBlock Grid.Row="9" Grid.Column="0" Text="Slickers" Style = "{StaticResource logLabel}"></TextBlock>
+            <TextBlock Grid.Row="10" Grid.Column="0" Text="Jackets/Raincoats" Style = "{StaticResource logLabel}"></TextBlock>
+            <TextBlock Grid.Row="11" Grid.Column="0" Text="Vests" Style = "{StaticResource logLabel}"></TextBlock>
+            <TextBlock Grid.Row="12" Grid.Column="0" Text="Bags" Style = "{StaticResource logLabel}"></TextBlock>
+            <TextBlock Grid.Row="13" Grid.Column="0" Text="Other" Style = "{StaticResource logLabel}"></TextBlock>
+
+            <!-- Beginning Of Shift-->
+            <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Text="Beginning of Shift" Style = "{StaticResource logLabel}"></TextBlock>
+
+            <TextBox Grid.Row="3" Grid.Column="1" Style = "{StaticResource myTextBox}"></TextBox>
+
+            <TextBox Grid.Row="4" Grid.Column="1" Style = "{StaticResource myTextBox}"></TextBox>
+
+            <TextBox Grid.Row="5" Grid.Column="1" Style = "{StaticResource myTextBox}"></TextBox>
+
+            <Grid Grid.Row="6" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="0,0,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBlock Text="Hex" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
+                </Grid>
+                <Grid Grid.Column="1" Margin="0,0,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBlock Text="Pliers" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
+                </Grid>
+                <Grid Grid.Column="2" Margin="0,0,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBlock Text="Batons" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
+                </Grid>
+                <Border BorderThickness="1,0,1,0" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Column="1"/>
+            </Grid>
+
+
+            <!-- Keys -->
+            <!--
+            <Grid Grid.Row="7" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="UGM" Style="{StaticResource keys}"></TextBlock>
+                </Grid>
+            </Grid>
+            -->
+
+            <TextBox Grid.Row="8" Grid.Column="1" Style = "{StaticResource myTextBox}"></TextBox>
+
+            <TextBox Grid.Row="9" Grid.Column="1" Style = "{StaticResource myTextBox}"></TextBox>
+
+            <!-- Jackets/Raincoats -->
+            <Grid Grid.Row="10" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="0,0,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBlock Text="Y. Jackets" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
+                </Grid>
+                <Grid Grid.Column="1" Margin="0,0,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBlock Text="O. Jackets" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
+                </Grid>
+                <Grid Grid.Column="2" Margin="0,0,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBlock Text="Raincoats" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
+                </Grid>
+                <Border BorderThickness="1,0,1,0" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Column="1"/>
+            </Grid>
+
+            <TextBox Grid.Row="11" Grid.Column="1" Style = "{StaticResource myTextBox}"></TextBox>
+
+            <!-- Bags -->
+            <Grid Grid.Row="12" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="0,0,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBlock Text="Duffel Bags" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
+                </Grid>
+                <Grid Grid.Column="1" Margin="0,0,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Style = "{StaticResource myTextBox}"></TextBox>
+                    <TextBlock Text="Book Bags" Grid.Column="1" Style = "{StaticResource internalLabel}"></TextBlock>
+                </Grid>
+                <Border BorderThickness="0,0,1,0" BorderBrush="Black" Grid.ColumnSpan="1" Grid.Column="0"/>
+            </Grid>
+
+            <TextBox Grid.Row="13" Grid.Column="1" Style = "{StaticResource myTextBox}" TextAlignment="Left"></TextBox>
+
+
+
+
+            <!-- End of Shift -->
+            <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Text="End of Shift" Style = "{StaticResource logLabel}"></TextBlock>
+
+            <!-- Footer -->
+            <DatePicker Grid.Row="14" Grid.Column="0" Margin="20,5,20,5" FontSize="20"></DatePicker>
+            <Grid Grid.Row="14" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="S#: " Grid.Column="0" Style = "{StaticResource logLabel}" Margin="5,0,0,0"></TextBlock>
+                <TextBox Grid.Column="1" Style = "{StaticResource headerTextBox}"></TextBox>
+            </Grid>
+            <Grid Grid.Row="14" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Signature: " Grid.Column="0" Style = "{StaticResource logLabel}"></TextBlock>
+                <TextBox Grid.Column="1" Style = "{StaticResource headerTextBox}"></TextBox>
+            </Grid>
+
+            <!-- Borders -->
+            <Border BorderThickness="2" BorderBrush="Black" Grid.ColumnSpan="3" Grid.RowSpan="12" Grid.Row="2"/>
+            <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="2"/>
+            <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="2" Grid.Column="1"/>
+            <Border BorderThickness="1,1,1,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="2" Grid.Column="2" />
+
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="3" Grid.Column="0" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="3" Grid.Column="1" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="3" Grid.Column="2" />
+
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="4" Grid.Column="0" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="4" Grid.Column="1" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="4" Grid.Column="2" />
+
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="5" Grid.Column="0" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="5" Grid.Column="1" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="5" Grid.Column="2" />
+
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="6" Grid.Column="0" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="6" Grid.Column="1" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="6" Grid.Column="2" />
+
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="7" Grid.Column="0" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="7" Grid.Column="1" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="7" Grid.Column="2" />
+
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="8" Grid.Column="0" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="8" Grid.Column="1" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="8" Grid.Column="2" />
+
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="9" Grid.Column="0" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="9" Grid.Column="1" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="9" Grid.Column="2" />
+
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="10" Grid.Column="0" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="10" Grid.Column="1" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="10" Grid.Column="2" />
+
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="11" Grid.Column="0" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="11" Grid.Column="1" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="11" Grid.Column="2" />
+
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="12" Grid.Column="0" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="12" Grid.Column="1" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="12" Grid.Column="2" />
+
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="13" Grid.Column="0" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="13" Grid.Column="1" />
+            <Border BorderThickness="1,0,0,1" BorderBrush="Black" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="13" Grid.Column="2" />
+
+        </Grid>
+
+    </Grid>
+
+
+</Window>
