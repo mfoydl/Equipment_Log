@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Equipment_Log"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Background="LightGray"
         Title="RSP Equipment Log" Height="450" Width="800">
@@ -50,6 +51,21 @@
             <Setter Property="BorderThickness" Value="0,0,0,0"></Setter>
             <Setter Property="TextAlignment" Value="Center"></Setter>
         </Style>
+        <Style x:Key="dateSign" TargetType="DatePicker">
+            <Setter Property="DisplayDateStart" Value="6/25/19"/>
+            <Setter Property="DisplayDateEnd" Value="{x:Static sys:DateTime.Today}"/>
+            <Setter Property="SelectedDate" Value="{Binding Date, Mode=TwoWay}" />
+            <Setter Property="Margin" Value="20,5,20,5" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="BorderThickness" Value="0,0,0,0"></Setter>
+        </Style>
+        <Style x:Key="dateNavStyle" TargetType="DatePicker">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="26" />
+            <Setter Property="SelectedDate" Value="{x:Static sys:DateTime.Now}" />
+            <Setter Property="DisplayDateStart" Value="6/25/19" />
+            <Setter Property="DisplayDateEnd" Value="{x:Static sys:DateTime.Today}"/>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -61,16 +77,17 @@
                 Previous and next buttons are used to switch date forward or back 1 day
                 DatePicker can be used to find a specific date -->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Height="75">
-            <Button Content="Previous" Style="{StaticResource navButton}" Name="navPrev"></Button>
+            <Button Content="Previous" Style="{StaticResource navButton}" Name="navPrev" Click="NavPrev_Click"></Button>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Equipment Log" HorizontalAlignment="Center" FontSize="20" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
-                <DatePicker Height="26" Grid.Row="1" VerticalAlignment="Center" Name="navDate"/>
+                <DatePicker Height="26" Grid.Row="1" Name="navDate" SelectedDateChanged="NavDate_SelectedDateChanged" Style="{StaticResource dateNavStyle}">
+                </DatePicker>
             </Grid>
-            <Button Content="Next" Style="{StaticResource navButton}" Name="navNext"></Button>
+            <Button Content="Next" Style="{StaticResource navButton}" Name="navNext" Click="NavNext_Click" IsEnabled="False"></Button>
         </StackPanel>
 
         
@@ -100,7 +117,7 @@
 
             <!-- Header Information for each log 
                     Where the shift, S#, and signature controls are layed out -->
-            <DatePicker Grid.Row="0" Grid.Column="0" Margin="20,5,20,5" FontSize="20"></DatePicker>
+            <DatePicker Grid.Row="0" Grid.Column="0" Name="Date1" Style="{StaticResource dateSign}"></DatePicker>
             <!-- Grid for S# Label and TextBox -->
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.ColumnDefinitions>
@@ -120,7 +137,7 @@
             </Grid>
             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Shift: " Style = "{StaticResource logLabel}"></TextBlock>
-                <ComboBox Margin="20,5,20,5" FontSize="15" VerticalAlignment="Center">
+                <ComboBox Margin="20,5,20,5" FontSize="15" VerticalAlignment="Center" SelectedValue="{Binding Shift, Mode=TwoWay}">
                     <ComboBoxItem IsSelected="True">Shift...</ComboBoxItem>
                     <ComboBoxItem>4am - 8am</ComboBoxItem>
                     <ComboBoxItem>8am - 12pm</ComboBoxItem>
@@ -364,7 +381,11 @@
             <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Text="End of Shift" Style = "{StaticResource logLabel}"></TextBlock>
 
             <!-- Footer -->
-            <DatePicker Grid.Row="14" Grid.Column="0" Margin="20,5,20,5" FontSize="20"></DatePicker>
+            <DatePicker Grid.Row="14" Grid.Column="0" Name="Date2" Style="{StaticResource dateSign}">
+                <DatePicker.BlackoutDates>
+                    <CalendarDateRange Start="1/2/0001" End="6/25/19"/>
+                </DatePicker.BlackoutDates>
+            </DatePicker>
             <Grid Grid.Row="14" Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>

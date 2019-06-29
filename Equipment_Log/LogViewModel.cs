@@ -29,12 +29,21 @@ namespace Equipment_Log {
         public int BookBags { get {return Log.BookBags; } set { Log.BookBags = value; } }
         public int DuffelBags { get { return Log.DuffelBags; } set { Log.DuffelBags = value; } }
         public string Other { get { return Log.Other; } set { Log.Other = value; } }
-        public DateTime Date { get { return Log.Date; } set { Log.Date = value; } }
+        public DateTime Date {
+            get { return Log.Date; }
+            set {
+                if(Log.Date != value) {
+                    Log.Date = value;
+                    RaisePropertyChanged("Date");
+                }
+            }
+        }
         public string Shift { get { return Log.Shift; } set { Log.Shift = value; } }
         public string SNum1 { get { return Log.SNum1; } set { Log.SNum1 = value; } }
         public string SNum2 { get { return Log.SNum2; } set { Log.SNum2 = value; } }
         public string Signature1 { get { return Log.Signature1; } set { Log.Signature1 = value; } }
-        public string Signature2 { get { return Log.Signature2; } set{Log.Signature2=value;} }
+        public string Signature2 { get { return Log.Signature2; } set{Log.Signature2 = value; } }
+        public Boolean Submitted { get { return Log.Submitted; } set { Log.Submitted = value; } }
 
         public LogViewModel() {
             Log = new CurrentLog();

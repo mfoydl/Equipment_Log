@@ -30,12 +30,13 @@ namespace Equipment_Log {
         public int BookBags { get; set; } = -1;
         public int DuffelBags { get; set; } = -1;
         public string Other { get; set; } = "-";
-        public DateTime Date { get; set; }
-        public string Shift { get; set; } = "-";
+        public DateTime Date { get; set; } = DateTime.Today;
+        public string Shift { get; set; }
         public string SNum1 { get; set; } = "-";
         public string SNum2 { get; set; } = "-";
         public string Signature1 { get; set; } = "-";
         public string Signature2 { get; set; } = "-";
+        public Boolean Submitted { get; set; } = false;
     }
 }
 
