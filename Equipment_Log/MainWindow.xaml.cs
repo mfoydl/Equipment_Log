@@ -64,7 +64,10 @@ namespace Equipment_Log {
         }
 
         private void Submit(object sender, RoutedEventArgs e) {
-
+            string message = "Are you sure you want to submit?\nYou will not be able to edit the form once it is submitted";
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show( message, "Submission Confirmation", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+                Console.WriteLine("Submitted");
         }
 
         private void NavPrev_Click(object sender, RoutedEventArgs e) {
@@ -84,39 +87,13 @@ namespace Equipment_Log {
         }
 
         private void NavDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e) {
-
-            //Disable Previous Navigation Button if at the Minimum Date
-            if (((DatePicker)sender).SelectedDate.Value.Equals(minDate)) {
-                var buttons = FindVisualChildren<Button>(this);
-                foreach (Button button in buttons) {
-                    if (button.Name == "navPrev") {
-                        button.IsEnabled = false;
-                    }
+            var buttons = FindVisualChildren<Button>(this);
+            foreach (Button button in buttons) {
+                if (button.Name == "navPrev") {
+                    button.IsEnabled = !((DatePicker)sender).SelectedDate.Value.Equals(minDate);
                 }
-            }
-            else { //Make sure previous button is enabled otherwise
-                var buttons = FindVisualChildren<Button>(this);
-                foreach (Button button in buttons) {
-                    if (button.Name == "navPrev") {
-                        button.IsEnabled = true;
-                    }
-                }
-            }
-            //Disable next navigation button if the date is set to today
-            if (((DatePicker)sender).SelectedDate.Value.Equals(DateTime.Today)) {
-                var buttons = FindVisualChildren<Button>(this);
-                foreach (Button button in buttons) {
-                    if (button.Name == "navNext") {
-                        button.IsEnabled = false;
-                    }
-                }
-            }
-            else { //enable otherwise
-                var buttons = FindVisualChildren<Button>(this);
-                foreach (Button button in buttons) {
-                    if (button.Name == "navNext") {
-                        button.IsEnabled = true;
-                    }
+                if (button.Name == "navNext") {
+                    button.IsEnabled = !((DatePicker)sender).SelectedDate.Value.Equals(DateTime.Today);
                 }
             }
         }
