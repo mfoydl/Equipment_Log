@@ -10,7 +10,7 @@
         Title="RSP Equipment Log" Height="450" Width="800">
 
     <Window.DataContext>
-        <local:LogViewModel />
+        <local:LogViewModel  />
     </Window.DataContext>
     
     <Window.Resources>
@@ -26,10 +26,12 @@
             <Setter Property="BorderThickness" Value="0,0,0,0"></Setter>
             <Setter Property="TextAlignment" Value="Center"></Setter>
             <Setter Property="Background" Value="LightGray"></Setter>
+            <Setter Property="IsReadOnly" Value="True"/>
         </Style>
         <Style x:Key="headerTextBox" TargetType="TextBox">
             <Setter Property="FontSize" Value="20"></Setter>
             <Setter Property="Margin" Value="15,5,15,5"></Setter>
+            <Setter Property="IsReadOnly" Value="True"/>
         </Style>
         <Style x:Key="internalLabel" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -58,6 +60,7 @@
             <Setter Property="Margin" Value="20,5,20,5" />
             <Setter Property="FontSize" Value="20" />
             <Setter Property="BorderThickness" Value="0,0,0,0"></Setter>
+            <Setter Property="IsEnabled" Value="False"/>
         </Style>
         <Style x:Key="dateNavStyle" TargetType="DatePicker">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -66,8 +69,15 @@
             <Setter Property="DisplayDateStart" Value="6/25/19" />
             <Setter Property="DisplayDateEnd" Value="{x:Static sys:DateTime.Today}"/>
         </Style>
+        <Style x:Key="shiftBox" TargetType="ComboBox">
+            <Setter Property="Margin" Value="20,5,20,5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="SelectedValue" Value="{Binding Shift, Mode=TwoWay}" />
+            <Setter Property="SelectedValuePath" Value="Content"/>
+        </Style>
     </Window.Resources>
-    <Grid>
+    <Grid DataContext="{Binding CurrentLog}">
         <Grid.RowDefinitions>
             <RowDefinition Height="75"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -137,13 +147,13 @@
             </Grid>
             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Shift: " Style = "{StaticResource logLabel}"></TextBlock>
-                <ComboBox Margin="20,5,20,5" FontSize="15" VerticalAlignment="Center" SelectedValue="{Binding Shift, Mode=TwoWay}">
-                    <ComboBoxItem IsSelected="True">Shift...</ComboBoxItem>
-                    <ComboBoxItem>4am - 8am</ComboBoxItem>
-                    <ComboBoxItem>8am - 12pm</ComboBoxItem>
-                    <ComboBoxItem>12pm - 4pm</ComboBoxItem>
-                    <ComboBoxItem>4pm - 8pm</ComboBoxItem>
-                    <ComboBoxItem>8pm - 4am</ComboBoxItem>
+                <ComboBox SelectionChanged="ComboBox_SelectionChanged" Style="{StaticResource shiftBox}">
+                    <ComboBoxItem Content="Shift..."/>
+                    <ComboBoxItem Content="4am - 8am"/>
+                    <ComboBoxItem Content="8am - 12pm"/>
+                    <ComboBoxItem Content="12pm - 4pm"/>
+                    <ComboBoxItem Content="4pm - 8pm"/>
+                    <ComboBoxItem Content="8pm - 4am"/>
                 </ComboBox>
             </StackPanel>
 
@@ -166,7 +176,7 @@
             <!-- Beginning Of Shift-->
             <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Text="Beginning of Shift" Style = "{StaticResource logLabel}"></TextBlock>
 
-            <TextBox Grid.Row="3" Grid.Column="1" Style = "{StaticResource myTextBox}" Text="{Binding IPads, Mode=TwoWay}"></TextBox>
+            <TextBox Grid.Row="3" Grid.Column="1" Style = "{StaticResource myTextBox}" Text="{Binding Path=IPads, Mode=TwoWay}"></TextBox>
 
             <TextBox Grid.Row="4" Grid.Column="1" Style = "{StaticResource myTextBox}" Text="{Binding Radios, Mode=TwoWay}"></TextBox>
 

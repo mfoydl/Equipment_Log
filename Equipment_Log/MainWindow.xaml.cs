@@ -42,27 +42,25 @@ namespace Equipment_Log {
         /// Disables all TextBoxes in the current log
         /// Called when user submits the log so changes cannot be made afterwards
         /// </summary>
-        private void DisableComponents() {
-            Console.WriteLine("Disable Event Fired");
-            var lstControl = FindVisualChildren<TextBox>(this);
-
-            foreach (TextBox control in lstControl) {
-                ///Disable Control if it is a textbox
-                control.IsReadOnly = true;
+        private void EnabledTextBoxes(Boolean enabled, Boolean visible) {
+            var controls = FindVisualChildren<TextBox>(this);
+            foreach (TextBox text in controls) {
+                text.IsReadOnly = !enabled;
+                if (!visible)
+                    text.Visibility = Visibility.Hidden;
+                else
+                    text.Visibility = Visibility.Visible;
             }
         }
-
-        private void EnableComponents() {
-            Console.WriteLine("Enable Event Fired");
-
-            var lstControl = FindVisualChildren<TextBox>(this);
-
-            foreach (TextBox control in lstControl) {
-                //Renable Textboxes
-                control.IsReadOnly = false;
+        private void EnabledDatePickers(Boolean enabled) {
+            var controls = FindVisualChildren<DatePicker>(this);
+            foreach (DatePicker picker in controls) {
+                if (!picker.Name.Equals("navDate")) {
+                    picker.IsEnabled = enabled;
+                }
             }
-        }
 
+        }
         private void Submit(object sender, RoutedEventArgs e) {
             string message = "Are you sure you want to submit?\nYou will not be able to edit the form once it is submitted";
             MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show( message, "Submission Confirmation", System.Windows.MessageBoxButton.YesNo);
@@ -98,5 +96,15 @@ namespace Equipment_Log {
             }
         }
 
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (((ComboBox)sender).SelectedValue.Equals("Shift...")) {
+                EnabledTextBoxes(false,true);
+                EnabledDatePickers(false);
+            }
+            else {
+                EnabledTextBoxes(true,true);
+                EnabledDatePickers(true);
+            }
+        }
     }
 }
