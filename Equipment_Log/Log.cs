@@ -1,257 +1,512 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-using System.Reflection;
 
 namespace Equipment_Log{
     class Log : INotifyPropertyChanged {
 
-        private int _ipads, _radios, _hex, _pliers, _batons, _ugm, _scc, _wcl, _subb, _subt, _ykey, _skey, _lot, _jeep, _yjackets, _ojackets, _raincoats, _bookbags, _duffelbags = 0;
-        private string _flashlights, _cards, _slickers, _vests, _other, _snum1, _snum2, _signature1, _signature2 = "";
-        private string _shift;
+        private int[] _ipads = new int[2];
+        private int[] _radios = new int[2];
+        private int[] _hex = new int[2];
+        private int[] _pliers = new int[2];
+        private int[] _batons = new int[2];
+        private int[] _ugm = new int[2];
+        private int[] _scc = new int[2];
+        private int[] _wcl = new int[2];
+        private int[] _subb = new int[2];
+        private int[] _subt = new int[2];
+        private int[] _ykey = new int[2];
+        private int[] _skey = new int[2];
+        private int[] _lot = new int[2];
+        private int[] _jeep = new int[2];
+        private int[] _yjackets = new int[2];
+        private int[] _ojackets = new int[2];
+        private int[] _raincoats = new int[2];
+        private int[] _bookbags = new int[2];
+        private int[] _duffelbags = new int[2];
+        private string[] _flashlights= new string[2];
+        private string[] _cards = new string[2];
+        private string[] _slickers = new string[2];
+        private string[] _vests = new string[2];
+        private string[] _other = new string[2];
+        private string _snum1, _snum2, _signature1, _signature2, _shift;
         private DateTime _date = DateTime.Today;
-        private Boolean submitted = false;
+
         public int IPads {
-            get { return _ipads; }
+            get { return _ipads[0]; }
             set {
-                if (_ipads != value) {
-                    _ipads = value;
+                if (_ipads[0] != value) {
+                    _ipads[0] = value;
                     RaisePropertyChanged("IPads");
                 }
 
             }
         }
-        public int Radios {
-            get { return _radios; }
+        public int IPads2 {
+            get { return _ipads[1]; }
             set {
-                if (_radios != value) {
-                    _radios = value;
+                if (_ipads[1] != value) {
+                    _ipads[1] = value;
+                    RaisePropertyChanged("IPads2");
+                }
+
+            }
+        }
+        public int Radios {
+            get { return _radios[0]; }
+            set {
+                if (_radios[0] != value) {
+                    _radios[0] = value;
                     RaisePropertyChanged("Radios");
                 }
 
             }
         }
-        public string Flashlights {
-            get { return _flashlights; }
+        public int Radios2 {
+            get { return _radios[1]; }
             set {
-                if (_flashlights != value) {
-                    _flashlights = value;
+                if (_radios[1] != value) {
+                    _radios[1] = value;
+                    RaisePropertyChanged("Radios2");
+                }
+
+            }
+        }
+        public string Flashlights {
+            get { return _flashlights[0]; }
+            set {
+                if (_flashlights[0] != value) {
+                    _flashlights[0] = value;
                     RaisePropertyChanged("Flashlights");
                 }
 
             }
         }
-        public int Hex {
-            get { return _hex; }
+        public string Flashlights2 {
+            get { return _flashlights[1]; }
             set {
-                if (_hex != value) {
-                    _hex = value;
+                if (_flashlights[1] != value) {
+                    _flashlights[1] = value;
+                    RaisePropertyChanged("Flashlights2");
+                }
+
+            }
+        }
+        public int Hex {
+            get { return _hex[0]; }
+            set {
+                if (_hex[0] != value) {
+                    _hex[0] = value;
                     RaisePropertyChanged("Hex");
                 }
 
             }
         }
-        public int Pliers {
-            get { return _pliers; }
+        public int Hex2 {
+            get { return _hex[1]; }
             set {
-                if (_pliers != value) {
-                    _pliers = value;
+                if (_hex[1] != value) {
+                    _hex[1] = value;
+                    RaisePropertyChanged("Hex2");
+                }
+
+            }
+        }
+        public int Pliers {
+            get { return _pliers[0]; }
+            set {
+                if (_pliers[0] != value) {
+                    _pliers[0] = value;
                     RaisePropertyChanged("Pliers");
                 }
 
             }
         }
-        public int Batons {
-            get { return _batons; }
+        public int Pliers2 {
+            get { return _pliers[0]; }
             set {
-                if (_batons != value) {
-                    _batons = value;
+                if (_pliers[0] != value) {
+                    _pliers[0] = value;
+                    RaisePropertyChanged("Pliers2");
+                }
+
+            }
+        }
+        public int Batons {
+            get { return _batons[0]; }
+            set {
+                if (_batons[0] != value) {
+                    _batons[0] = value;
                     RaisePropertyChanged("Batons");
                 }
 
             }
         }
-        public int UGM {
-            get { return _ugm; }
+        public int Batons2 {
+            get { return _batons[1]; }
             set {
-                if (_ugm != value) {
-                    _ugm = value;
+                if (_batons[1] != value) {
+                    _batons[1] = value;
+                    RaisePropertyChanged("Batons2");
+                }
+
+            }
+        }
+        public int UGM {
+            get { return _ugm[0]; }
+            set {
+                if (_ugm[0] != value) {
+                    _ugm[0] = value;
                     RaisePropertyChanged("UGM");
                 }
 
             }
         }
-        public int SCC {
-            get { return _scc; }
+        public int UGM2 {
+            get { return _ugm[1]; }
             set {
-                if (_scc != value) {
-                    _scc = value;
+                if (_ugm[1] != value) {
+                    _ugm[1] = value;
+                    RaisePropertyChanged("UGM2");
+                }
+
+            }
+        }
+        public int SCC {
+            get { return _scc[0]; }
+            set {
+                if (_scc[0] != value) {
+                    _scc[0] = value;
                     RaisePropertyChanged("SCC");
                 }
 
             }
         }
-        public int WCL {
-            get { return _wcl; }
+        public int SCC2 {
+            get { return _scc[1]; }
             set {
-                if (_wcl != value) {
-                    _wcl = value;
+                if (_scc[1] != value) {
+                    _scc[1] = value;
+                    RaisePropertyChanged("SCC2");
+                }
+
+            }
+        }
+        public int WCL {
+            get { return _wcl[0]; }
+            set {
+                if (_wcl[0] != value) {
+                    _wcl[0] = value;
                     RaisePropertyChanged("WCL");
                 }
 
             }
         }
-        public int SUBB {
-            get { return _subb; }
+        public int WCL2 {
+            get { return _wcl[1]; }
             set {
-                if (_subb != value) {
-                    _subb = value;
+                if (_wcl[1] != value) {
+                    _wcl[1] = value;
+                    RaisePropertyChanged("WCL2");
+                }
+
+            }
+        }
+        public int SUBB {
+            get { return _subb[0]; }
+            set {
+                if (_subb[0] != value) {
+                    _subb[0] = value;
                     RaisePropertyChanged("SUBB");
                 }
 
             }
         }
-        public int SUBT {
-            get { return _subt; }
+        public int SUBB2 {
+            get { return _subb[1]; }
             set {
-                if (_subt != value) {
-                    _subt = value;
+                if (_subb[1] != value) {
+                    _subb[1] = value;
+                    RaisePropertyChanged("SUBB2");
+                }
+
+            }
+        }
+        public int SUBT {
+            get { return _subt[0]; }
+            set {
+                if (_subt[0] != value) {
+                    _subt[0] = value;
                     RaisePropertyChanged("SUBT");
                 }
 
             }
         }
-        public int YKEY {
-            get { return _ykey; }
+        public int SUBT2 {
+            get { return _subt[1]; }
             set {
-                if (_ykey != value) {
-                    _ykey = value;
+                if (_subt[1] != value) {
+                    _subt[1] = value;
+                    RaisePropertyChanged("SUBT2");
+                }
+
+            }
+        }
+        public int YKEY {
+            get { return _ykey[0]; }
+            set {
+                if (_ykey[0] != value) {
+                    _ykey[0] = value;
                     RaisePropertyChanged("YKEY");
                 }
 
             }
         }
-        public int SKEY {
-            get { return _skey; }
+        public int YKEY2 {
+            get { return _ykey[1]; }
             set {
-                if (_skey != value) {
-                    _skey = value;
+                if (_ykey[1] != value) {
+                    _ykey[1] = value;
+                    RaisePropertyChanged("YKEY2");
+                }
+
+            }
+        }
+        public int SKEY {
+            get { return _skey[0]; }
+            set {
+                if (_skey[0] != value) {
+                    _skey[0] = value;
                     RaisePropertyChanged("SKEY");
                 }
 
             }
         }
-        public int LOT {
-            get { return _lot; }
+        public int SKEY2 {
+            get { return _skey[1]; }
             set {
-                if (_lot != value) {
-                    _lot = value;
+                if (_skey[1] != value) {
+                    _skey[1] = value;
+                    RaisePropertyChanged("SKEY2");
+                }
+
+            }
+        }
+        public int LOT {
+            get { return _lot[0]; }
+            set {
+                if (_lot[0] != value) {
+                    _lot[0] = value;
                     RaisePropertyChanged("LOT");
                 }
 
             }
         }
-        public int JEEP {
-            get { return _jeep; }
+        public int LOT2 {
+            get { return _lot[1]; }
             set {
-                if (_jeep != value) {
-                    _jeep = value;
+                if (_lot[1] != value) {
+                    _lot[1] = value;
+                    RaisePropertyChanged("LOT2");
+                }
+
+            }
+        }
+        public int JEEP {
+            get { return _jeep[0]; }
+            set {
+                if (_jeep[0] != value) {
+                    _jeep[0] = value;
+                    RaisePropertyChanged("JEEP");
+                }
+
+            }
+        }
+        public int JEEP2 {
+            get { return _jeep[1]; }
+            set {
+                if (_jeep[1] != value) {
+                    _jeep[1] = value;
                     RaisePropertyChanged("JEEP");
                 }
 
             }
         }
         public string Cards {
-            get { return _cards; }
+            get { return _cards[0]; }
             set {
-                if (_cards != value) {
-                    _cards = value;
+                if (_cards[0] != value) {
+                    _cards[0] = value;
                     RaisePropertyChanged("Cards");
                 }
 
             }
         }
-        public string Slickers {
-            get { return _slickers; }
+        public string Cards2 {
+            get { return _cards[1]; }
             set {
-                if (_slickers != value) {
-                    _slickers = value;
+                if (_cards[1] != value) {
+                    _cards[1] = value;
+                    RaisePropertyChanged("Cards2");
+                }
+
+            }
+        }
+        public string Slickers {
+            get { return _slickers[0]; }
+            set {
+                if (_slickers[0] != value) {
+                    _slickers[0] = value;
                     RaisePropertyChanged("Slickers");
                 }
 
             }
         }
-        public int YJackets {
-            get { return _yjackets; }
+        public string Slickers2 {
+            get { return _slickers[1]; }
             set {
-                if (_yjackets != value) {
-                    _yjackets = value;
+                if (_slickers[1] != value) {
+                    _slickers[1] = value;
+                    RaisePropertyChanged("Slickers2");
+                }
+
+            }
+        }
+        public int YJackets {
+            get { return _yjackets[0]; }
+            set {
+                if (_yjackets[0] != value) {
+                    _yjackets[0] = value;
                     RaisePropertyChanged("YJackets");
                 }
 
             }
         }
-        public int OJAckets {
-            get { return _ojackets; }
+        public int YJackets2 {
+            get { return _yjackets[1]; }
             set {
-                if (_ojackets != value) {
-                    _ojackets = value;
+                if (_yjackets[1] != value) {
+                    _yjackets[1] = value;
+                    RaisePropertyChanged("YJackets2");
+                }
+
+            }
+        }
+        public int OJAckets {
+            get { return _ojackets[0]; }
+            set {
+                if (_ojackets[0] != value) {
+                    _ojackets[0] = value;
                     RaisePropertyChanged("OJackets");
                 }
 
             }
         }
-        public int Raincoats {
-            get { return _raincoats; }
+        public int OJAckets2 {
+            get { return _ojackets[1]; }
             set {
-                if (_raincoats != value) {
-                    _raincoats = value;
+                if (_ojackets[1] != value) {
+                    _ojackets[1] = value;
+                    RaisePropertyChanged("OJackets2");
+                }
+
+            }
+        }
+        public int Raincoats {
+            get { return _raincoats[0]; }
+            set {
+                if (_raincoats[0] != value) {
+                    _raincoats[0] = value;
                     RaisePropertyChanged("Raincoats");
                 }
 
             }
         }
-        public string Vests {
-            get { return _vests; }
+        public int Raincoats2 {
+            get { return _raincoats[1]; }
             set {
-                if (_vests != value) {
-                    _vests = value;
+                if (_raincoats[1] != value) {
+                    _raincoats[1] = value;
+                    RaisePropertyChanged("Raincoats2");
+                }
+
+            }
+        }
+        public string Vests {
+            get { return _vests[0]; }
+            set {
+                if (_vests[0] != value) {
+                    _vests[0] = value;
                     RaisePropertyChanged("Vests");
                 }
 
             }
         }
-        public int BookBags {
-            get { return _bookbags; }
+        public string Vests2 {
+            get { return _vests[1]; }
             set {
-                if (_bookbags != value) {
-                    _bookbags = value;
+                if (_vests[1] != value) {
+                    _vests[1] = value;
+                    RaisePropertyChanged("Vests2");
+                }
+
+            }
+        }
+        public int BookBags {
+            get { return _bookbags[0]; }
+            set {
+                if (_bookbags[0] != value) {
+                    _bookbags[0] = value;
                     RaisePropertyChanged("BookBags");
                 }
 
             }
         }
-        public int DuffelBags {
-            get { return _duffelbags; }
+        public int BookBags2 {
+            get { return _bookbags[1]; }
             set {
-                if (_duffelbags != value) {
-                    _duffelbags = value;
+                if (_bookbags[1] != value) {
+                    _bookbags[1] = value;
+                    RaisePropertyChanged("BookBags2");
+                }
+
+            }
+        }
+        public int DuffelBags {
+            get { return _duffelbags[0]; }
+            set {
+                if (_duffelbags[0] != value) {
+                    _duffelbags[0] = value;
                     RaisePropertyChanged("DuffelBags");
                 }
 
             }
         }
-        public string Other {
-            get { return _other; }
+        public int DuffelBags2 {
+            get { return _duffelbags[1]; }
             set {
-                if (_other != value) {
-                    _other = value;
+                if (_duffelbags[1] != value) {
+                    _duffelbags[1] = value;
+                    RaisePropertyChanged("DuffelBags2");
+                }
+
+            }
+        }
+        public string Other {
+            get { return _other[0]; }
+            set {
+                if (_other[0] != value) {
+                    _other[0] = value;
                     RaisePropertyChanged("Other");
+                }
+
+            }
+        }
+        public string Other2 {
+            get { return _other[1]; }
+            set {
+                if (_other[1] != value) {
+                    _other[1] = value;
+                    RaisePropertyChanged("Other2");
                 }
 
             }
@@ -312,43 +567,48 @@ namespace Equipment_Log{
 
             }
         }
-        public Boolean Submitted { get { return submitted; } set { submitted = value; } }
+        public Boolean Submitted { get; set; } = false;
 
-        public Log() {
-            //FindShift();
+        public Log() {}
+        
+        public Log(Object[] b) {
+            Object[] properties = { IPads, Radios, Flashlights,
+                Hex, Pliers, Batons,
+                UGM, SCC, WCL, SUBB, SUBT, YKEY, SKEY, LOT, JEEP,
+                Cards, Slickers, YJackets, OJAckets, Raincoats, BookBags, Vests,
+                Other, SNum1,Signature1 };
+
+            for(int i = 0; i < properties.Length; i++) {
+                properties[i] = b[i];
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged(string propertyName) {
             // take a copy to prevent thread issues
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public void FindShift() {
+        public string FindShift() {
             Console.WriteLine("Finding Shift");
             DateTime now = DateTime.Now;
-            if (now.Hour >= 0 && now.Hour < 3) {
-                Shift = "8pm - 4am";
-            }
-            else if (now.Hour < 7) {
+            
+            if (now.Hour >= 4 && now.Hour < 8) {
                 Shift = "4am - 8am";
             }
-            else if (now.Hour < 11) {
+            else if (now.Hour < 12) {
                 Shift = "4am - 12pm";
             }
-            else if (now.Hour < 15) {
+            else if (now.Hour < 16) {
                 Shift = "12pm - 4pm";
             }
-            else if (now.Hour < 19) {
+            else if (now.Hour < 20) {
                 Shift = "4pm - 8pm";
             }
             else {
                 Shift = "8pm - 4am";
                 Console.WriteLine("Foumd Shift");
             }
-            Console.WriteLine("Shift=" + Shift);
+            return Shift;
         }
     }
 }

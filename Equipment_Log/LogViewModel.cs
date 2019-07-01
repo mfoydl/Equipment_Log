@@ -1,35 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Reflection;
 
 namespace Equipment_Log {
     class LogViewModel {
         private static Log saved;
+        private static DBConnector db;
         public static Log CurrentLog { get { return Log; } set { Log = value; } }
+        
 
         internal static Log Log { get; set; }
 
         public LogViewModel() {
             Log = new Log();
+            db = new DBConnector();
         }
 
-        public static Boolean Load(DateTime date, string shift) {
+        public static void Load(DateTime date, string shift) {
             if (Log.Submitted == false) {
                 SaveLog();
             }
 
-            if (date==saved.Date && shift == saved.Shift) {
+            if (saved!= null && date==saved.Date && shift == saved.Shift) {
                 LoadLog(saved);
-                return false;
             }
             else {
-                //Load new log from database
-                return true;
+                Log newLog= db.LoadLog(date,shift);
+                LoadLog(newLog);
             }
             
 
 
+        }
+        public static void InitialLoad(DateTime date, string shift) {
+            Log newLog = db.LoadLog(date, shift);
+            LoadLog(newLog);
         }
         private static void SaveLog() {
             saved = new Log();
@@ -71,12 +75,13 @@ namespace Equipment_Log {
                 }
             }
         }
-        public void Submit() {
-
+        public static void Submit() {
+            Log.Submitted = true;
+            db.UploadLog(Log);
         }
 
-        public static void FindShift() {
-            Log.FindShift();
+        public static string FindShift() {
+            return Log.FindShift();
         }
     }
 }
