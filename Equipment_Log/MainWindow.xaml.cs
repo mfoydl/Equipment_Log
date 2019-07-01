@@ -21,6 +21,11 @@ namespace Equipment_Log {
         private readonly DateTime minDate = new DateTime(2019, 6, 26, 0, 0, 0, 0);
         public MainWindow() {
             InitializeComponent();
+            ContentRendered += new EventHandler(Page_Load);
+        }
+
+        protected void Page_Load(object sender, EventArgs e) {
+            LogViewModel.FindShift();
         }
 
         public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject {
@@ -42,24 +47,11 @@ namespace Equipment_Log {
         /// Disables all TextBoxes in the current log
         /// Called when user submits the log so changes cannot be made afterwards
         /// </summary>
-        private void EnabledTextBoxes(Boolean enabled, Boolean visible) {
+        private void EnabledTextBoxes(Boolean enabled) {
             var controls = FindVisualChildren<TextBox>(this);
             foreach (TextBox text in controls) {
                 text.IsReadOnly = !enabled;
-                if (!visible)
-                    text.Visibility = Visibility.Hidden;
-                else
-                    text.Visibility = Visibility.Visible;
             }
-        }
-        private void EnabledDatePickers(Boolean enabled) {
-            var controls = FindVisualChildren<DatePicker>(this);
-            foreach (DatePicker picker in controls) {
-                if (!picker.Name.Equals("navDate")) {
-                    picker.IsEnabled = enabled;
-                }
-            }
-
         }
         private void Submit(object sender, RoutedEventArgs e) {
             string message = "Are you sure you want to submit?\nYou will not be able to edit the form once it is submitted";
@@ -69,42 +61,62 @@ namespace Equipment_Log {
         }
 
         private void NavPrev_Click(object sender, RoutedEventArgs e) {
-            var datePickers = FindVisualChildren<DatePicker>(this);
-            foreach(DatePicker picker in datePickers) {
-                if (picker.Name == "navDate")
-                    picker.SelectedDate = picker.SelectedDate.Value.AddDays(-1);
+            var shiftBox=FindVisualChildren<ComboBox>(this);
+            foreach(ComboBox box in shiftBox) {
+                if(box.Name.Equals("shiftBox")&&box.SelectedIndex!=1) {
+                    box.SelectedIndex -= 1;
+                }
+                else {
+                    var datePickers = FindVisualChildren<DatePicker>(this);
+                    foreach (DatePicker picker in datePickers) {
+                        if (picker.Name == "navDate")
+                            picker.SelectedDate = picker.SelectedDate.Value.AddDays(-1);
+                    }
+                    box.SelectedIndex = box.Items.Count - 1;
+                }
             }
+
+
+            
         }
 
         private void NavNext_Click(object sender, RoutedEventArgs e) {
-            var datePickers = FindVisualChildren<DatePicker>(this);
-            foreach (DatePicker picker in datePickers) {
-                if (picker.Name == "navDate")
-                    picker.SelectedDate = picker.SelectedDate.Value.AddDays(1);
+            var shiftBox = FindVisualChildren<ComboBox>(this);
+            foreach (ComboBox box in shiftBox) {
+                if (box.Name.Equals("shiftBox") && box.SelectedIndex != box.Items.Count-1) {
+                    box.SelectedIndex += 1;
+                }
+                else {
+                    var datePickers = FindVisualChildren<DatePicker>(this);
+                    foreach (DatePicker picker in datePickers) {
+                        if (picker.Name == "navDate")
+                            picker.SelectedDate = picker.SelectedDate.Value.AddDays(1);
+                    }
+                    box.SelectedIndex = 1;
+                }
             }
         }
 
         private void NavDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e) {
             var buttons = FindVisualChildren<Button>(this);
+            var comboboxes = FindVisualChildren<ComboBox>(this);
+            ;
+            foreach(ComboBox box in comboboxes) {
+                if (box.Name.Equals("shiftBox")) {
+                    ComboBox shiftBox = box;
+                }
+            }
             foreach (Button button in buttons) {
                 if (button.Name == "navPrev") {
-                    button.IsEnabled = !((DatePicker)sender).SelectedDate.Value.Equals(minDate);
+                    button.IsEnabled = !(shiftBox.SelectedIndex == 1 && ((DatePicker)sender).SelectedDate.Value.Equals(minDate));
                 }
                 if (button.Name == "navNext") {
-                    button.IsEnabled = !((DatePicker)sender).SelectedDate.Value.Equals(DateTime.Today);
+                    button.IsEnabled = !(shiftBox.SelectedIndex == shiftBox.Items.Count-1 && ((DatePicker)sender).SelectedDate.Value.Equals(DateTime.Today));
                 }
             }
         }
-
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            if (((ComboBox)sender).SelectedValue.Equals("Shift...")) {
-                EnabledTextBoxes(false,true);
-                EnabledDatePickers(false);
-            }
-            else {
-                EnabledTextBoxes(true,true);
-                EnabledDatePickers(true);
-            }
         }
+        
     }
 }
